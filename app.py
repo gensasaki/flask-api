@@ -18,11 +18,11 @@ stores = [
 def home():
     return render_template('index.html')
 
-@app.route('/', methods=['POST'])
+@app.route('/store', methods=['POST'])
 def create_store():
     request_data = request.get_json()
     new_store = {
-        'name': requset_data['name'],
+        'name': request_data['name'],
         'items': []
     }
     stores.append(new_store)
@@ -42,7 +42,7 @@ def get_stores():
 
 @app.route('/store/<string:name>/item', methods=['POST'])
 def create_item_in_store(name):
-    request_data = requset.get_json()
+    request_data = request.get_json()
     for store in stores:
         if store['name'] == name:
             new_item = {
